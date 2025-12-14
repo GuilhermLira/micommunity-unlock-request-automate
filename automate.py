@@ -16,6 +16,8 @@ import time
 import atexit
 import sys
 import argparse
+import platform
+import os
 
 from datetime import (
     datetime,
@@ -36,11 +38,62 @@ LOCAL_XML_PATH = "ui_dump.xml"
 ADB_STAY_ON_KEY = "stay_on_while_plugged_in"
 DEFAULT_TIMEOUT_VALUE = None
 
+
+def get_adb_executable():
+    """Determines whenever to use bundled ADB based on OS and arch."""
+    system = platform.system()
+    machine = platform.machine()
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    adb_path = "adb"
+
+    def get_message(arch_check=False):
+        if arch_check:
+            return f"[!] Warning: {system} architecture '{machine}' is not x86_64. " \
+                   + "Falling back to 'adb' from PATH."
+        return f"[!] Warning: ADB executable at '{expected_path}' missing. Using 'adb' from PATH."
+
+    expected_path = None
+    arch_check_required = False
+    filename = None
+
+    if system == "Darwin":
+        filename = "adb.macho"
+
+    elif system == "Windows":
+        filename = "adb.exe"
+        arch_check_required = machine not in ("AMD64", "x86_64")
+
+    elif system in ("Linux", "FreeBSD"):
+        filename = "adb.elf"
+        arch_check_required = machine not in ("x86_64",)
+
+    else:
+        print(f"[!] Warning: Unrecognized OS ('{system}'). Using 'adb' from PATH.")
+        return adb_path
+
+    expected_path = os.path.join(script_dir, "bundles", filename)
+
+    if arch_check_required:
+        print(get_message(arch_check=True))
+        return adb_path
+
+    if expected_path and os.path.exists(expected_path):
+        return expected_path
+
+    if expected_path:
+        print(get_message())
+
+    return adb_path
+
+ADB_EXECUTABLE = get_adb_executable()
+
+
 def run_adb_command(command, check=True):
     """Executes an ADB command."""
     try:
         result = subprocess.run(
-            f"adb {command}",
+            f"{ADB_EXECUTABLE} {command}",
             shell=True,
             check=check,
             capture_output=True,
