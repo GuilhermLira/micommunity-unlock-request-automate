@@ -142,8 +142,8 @@ def main():
     parser.add_argument(
         "--clicks", 
         type=int,
-        default=3,
-        help="Number of clicks (default: 3)"
+        default=2,
+        help="Number of clicks (default: 2)"
     )
     parser.add_argument(
         "--delay",

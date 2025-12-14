@@ -32,7 +32,7 @@ The script will disable screen timeout, check time against a NTP server to be pr
 calculate when the quota will be reset, and also calculate the center of the 
 "Apply for unlocking" button via `ADB`. 
 
-When beijing time hits 23:59:59, the script will simulate 3 clicks to the button 
+When beijing time hits 23:59:59, the script will simulate 2 clicks to the button 
 by default with a 1 second delay, and that's it.
 
 ## Usage
@@ -46,7 +46,7 @@ Python script to automate Mi Community unlock request at 00:00 beijing time via 
 
 options:
   -h, --help            show this help message and exit
-  --clicks CLICKS       Number of clicks (default: 3)
+  --clicks CLICKS       Number of clicks (default: 2)
   --delay DELAY         Delay between clicks in seconds (default: 1.0)
   --test                Run in test mode
   --test-timezone TEST_TIMEZONE
