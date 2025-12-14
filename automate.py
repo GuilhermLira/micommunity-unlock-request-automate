@@ -39,7 +39,7 @@ ADB_STAY_ON_KEY = "stay_on_while_plugged_in"
 DEFAULT_TIMEOUT_VALUE = None
 
 
-def get_adb_executable():
+def get_adb_executable() -> str:
     """Determines whenever to use bundled ADB based on OS and arch."""
     system = platform.system()
     machine = platform.machine()
@@ -53,25 +53,21 @@ def get_adb_executable():
                    + "Falling back to 'adb' from PATH."
         return f"[!] Warning: ADB executable at '{expected_path}' missing. Using 'adb' from PATH."
 
+    match system:
+        case "Darwin":
+            filename = "adb.macho"
+            arch_check_required = False
+        case "Windows":
+            filename = "adb.exe"
+            arch_check_required = machine not in ("AMD64", "x86_64")
+        case "Linux" | "FreeBSD":
+            filename = "adb.elf"
+            arch_check_required = machine not in ("x86_64",)
+        case _:
+            print(f"[!] Warning: Unrecognized OS ('{system}'). Using 'adb' from PATH.")
+            return adb_path
+
     expected_path = None
-    arch_check_required = False
-    filename = None
-
-    if system == "Darwin":
-        filename = "adb.macho"
-
-    elif system == "Windows":
-        filename = "adb.exe"
-        arch_check_required = machine not in ("AMD64", "x86_64")
-
-    elif system in ("Linux", "FreeBSD"):
-        filename = "adb.elf"
-        arch_check_required = machine not in ("x86_64",)
-
-    else:
-        print(f"[!] Warning: Unrecognized OS ('{system}'). Using 'adb' from PATH.")
-        return adb_path
-
     expected_path = os.path.join(script_dir, "bundles", filename)
 
     if arch_check_required:
@@ -89,7 +85,7 @@ def get_adb_executable():
 ADB_EXECUTABLE = get_adb_executable()
 
 
-def run_adb_command(command, check=True):
+def run_adb_command(command: str, check: bool = True) -> str:
     """Executes an ADB command."""
     try:
         result = subprocess.run(
@@ -111,7 +107,7 @@ def run_adb_command(command, check=True):
         sys.exit(1)
 
 
-def get_ntp_time(server=NTP_SERVER):
+def get_ntp_time(server: str = NTP_SERVER) -> datetime:
     """Fetches current time from NTP server (UTC)."""
     try:
         response = ntplib.NTPClient().request(server, version=3)
@@ -123,7 +119,7 @@ def get_ntp_time(server=NTP_SERVER):
         return datetime.now(timezone.utc)
 
 
-def find_element_center_coordinates(xml_file_path, target_text):
+def find_element_center_coordinates(xml_file_path: str, target_text: str) -> tuple[int, int] | None:
     """Parses XML file to find element center coordinates."""
     print(f"[*] Parsing XML for element with text: '{target_text}'")
     try:
@@ -144,7 +140,7 @@ def find_element_center_coordinates(xml_file_path, target_text):
         x1, y1, x2, y2 = map(int, coords)
         center_x, center_y = (x1 + x2) // 2, (y1 + y2) // 2
 
-        print("[+] Found element bounds: " + bounds_str)
+        print(f"[+] Found element bounds: {bounds_str}")
         print(f"[+] Calculated center coordinates: ({center_x}, {center_y})")
 
         return center_x, center_y
@@ -153,7 +149,7 @@ def find_element_center_coordinates(xml_file_path, target_text):
         return None
 
 
-def enable_stay_awake():
+def enable_stay_awake() -> None:
     """Enables screen to stay on while charging."""
     global DEFAULT_TIMEOUT_VALUE  # pylint: disable=global-statement
     try:
@@ -174,7 +170,7 @@ def enable_stay_awake():
 
 
 @atexit.register
-def restore_power_settings():
+def restore_power_settings() -> None:
     """Restores original screen timeout on exit."""
     if DEFAULT_TIMEOUT_VALUE is not None:
         try:
@@ -189,7 +185,7 @@ def restore_power_settings():
     print("[+] Removed the temporary file from the device.")
 
 
-def main():
+def main() -> None:
     """Main entry."""
     parser = argparse.ArgumentParser(
         description="Python script to automate Mi Community unlock" +
@@ -230,11 +226,13 @@ def main():
         parser.error("--test-time is required when using --test")
 
     if args.test and args.test_time:
-        time_parts = args.test_time.split(":")
-        if len(time_parts) == 2:
-            args.test_time = f"{args.test_time}:00"
-        elif len(time_parts) != 3:
-            parser.error("--test-time must be in HH:MM or HH:MM:SS format")
+        match args.test_time.split(":"):
+            case [_, _]:
+                args.test_time = f"{args.test_time}:00"
+            case [_, _, _]:
+                pass
+            case _:
+                parser.error("--test-time must be in HH:MM or HH:MM:SS format")
 
     is_test_mode = args.test
     if is_test_mode:
@@ -316,10 +314,8 @@ def main():
     execution_time = get_ntp_time() + target_tz_offset
 
     print(
-        "Executing: [adb shell input tap " 
-        + str(center_x) + " "
-        + str(center_y) + "] at "
-        + execution_time.strftime("%H:%M:%S.%f")
+        f"Executing: [adb shell input tap {center_x} {center_y}] at "
+        f"{execution_time.strftime('%H:%M:%S.%f')}" # pylint: disable=W1405
     )
 
     for click_num in range(num_clicks):

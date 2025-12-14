@@ -18,10 +18,10 @@ This script requires the device to have:
 This will not work on devices that have Chinese firmware/region,
 or specific devices that have blocked bootloader unlock.
 
-This script bundles basic `ADB` for most common OSes with x86_64 (+ arm64 MacOS only) 
+This script bundles basic `ADB` for most common OSes with `x86_64` (+ `arm64` MacOS only) 
 architectures. On devices with a different environment, `ADB` from `PATH` will be used!
 
-This script also requires `ntplib` to be installed:
+This script also requires `Python 3.10+` and `ntplib` to be installed:
 ```shell
 pip install -r requirements.txt
 ```
