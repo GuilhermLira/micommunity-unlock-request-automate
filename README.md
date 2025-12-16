@@ -74,5 +74,12 @@ python automate.py --clicks 10 --delay 2
 python automate.py --test --test-timezone 2 --test-time 16:20
 ```
 
+## Alternative
+This script below sends the request from the computer itself, instead of going through the Mi Community app.
+
+However it is not cross-compatible with all OSes and environments (e.g. `Fedora`).
+
+[GetToken / AQLR script from XDA developers](https://xdaforums.com/t/how-to-unlock-bootloader-on-xiaomi-hyperos-all-devices-except-cn.4654009)
+
 ## Credits
 Concept from [EstimateMuted4573 on Reddit](https://www.reddit.com/r/Android/comments/1mgn0yj/xiaomis_bootloader_unlock_system_is_broken_heres)
